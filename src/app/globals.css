@@ -1,8 +1,10 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --second: #aba9a4;
 }
 
 @theme inline {
@@ -10,6 +12,16 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-second: var(--second);
+}
+
+/* Custom utility classes */
+.text-second {
+  color: var(--second);
+}
+
+.font-semi-light {
+  font-weight: 300;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +34,127 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Montserrat", sans-serif;
+  scroll-behavior: smooth;
+}
+
+/*Custom Cursor - Disabled for now */
+body {
+  cursor: none !important;
+}
+.custom-cursor {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  background-color: #efefee;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease;
+}
+
+.custom-cursor.hover {
+  transform: scale(1.5);
+}
+
+/* Parallax section styling for professional look */
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+  transition: box-shadow 0.3s, background 0.3s;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hero section full-bleed professional style */
+.hero-section {
+  min-height: 100vh;
+  width: 100vw;
+  background: #111;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.blurred-section {
+  filter: blur(6px) brightness(0.7);
+  transition: filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+.hero-float {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  z-index: 50;
+  pointer-events: auto;
+}
+.hero-float:hover {
+  transform: scale(1.2) !important;
+  rotate: 10deg;
+  z-index: 100;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-24px) scale(1.08);
+  }
+}
+@keyframes float-medium {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(18px) scale(1.04);
+  }
+}
+@keyframes float-fast {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-12px) scale(1.02);
+  }
+}
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+.animate-float-medium {
+  animation: float-medium 5s ease-in-out infinite;
+}
+.animate-float-fast {
+  animation: float-fast 3.5s ease-in-out infinite;
+}
+
+.fade-slide-contact {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-slide-contact.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
